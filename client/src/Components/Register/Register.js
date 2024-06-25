@@ -9,15 +9,18 @@ const Register = () => {
   const handle_Submit = async (e) => {
     e.preventDefault();
     try {
-      const data = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-        }),
-      });
+      const data = await fetch(
+        "https://nullclass-assignment-3.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
+        }
+      );
       const res = await data.json();
       if (res.message) {
         alert(res.message);

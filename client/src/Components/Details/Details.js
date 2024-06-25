@@ -8,7 +8,7 @@ const Details = () => {
     if (!token) {
       window.location.href = "/login";
     }
-    fetch("http://localhost:5000/api/auth/access-logs", {
+    fetch("https://nullclass-assignment-3.onrender.com/api/auth/access-logs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

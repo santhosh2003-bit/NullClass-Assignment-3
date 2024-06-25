@@ -9,14 +9,17 @@ const OtpPage = () => {
   const handle_Submit = async (e) => {
     e.preventDefault();
     try {
-      const data = await fetch("http://localhost:5000/api/auth/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          otp: otp,
-        }),
-      });
+      const data = await fetch(
+        "https://nullclass-assignment-3.onrender.com/api/auth/verify-otp",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            otp: otp,
+          }),
+        }
+      );
       const res = await data.json();
       if (res.error) {
         console.log(res.error);
