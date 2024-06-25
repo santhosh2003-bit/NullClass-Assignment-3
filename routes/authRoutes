@@ -1,0 +1,29 @@
+const express = require("express");
+const {
+  register,
+  login,
+  verifyOTP,
+  setAccessControlTimes,
+  getAccessLogs,
+} = require("../Controllers/authController");
+const { checkAccessControl } = require("../Controllers/authController");
+const authMiddleware = require("../Middleware/authMiddleware");
+const logAccess = require("../Middleware/accessMiddleware");
+
+const router = express.Router();
+router.post("/register", register);
+router.post("/login", login);
+router.post("/verify-otp", verifyOTP);
+router.get(
+  "/protected",
+  authMiddleware,
+  checkAccessControl,
+  logAccess,
+  (req, res) => {
+    res.json({ message: "Access granted" });
+  }
+);
+// router.post("/set-access-control", authMiddleware, setAccessControlTimes);
+router.get("/access-logs", authMiddleware, getAccessLogs);
+
+module.exports = router;
